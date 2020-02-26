@@ -43,7 +43,7 @@ class Client_model extends CI_Model
                 'numClient' => $this->input->post('numClient'),
                 'adresse' => $this->input->post('adresse'),
                 'numTel' => $this->input->post('numTel'),
-                'mail' => $thid->input->post('mail'),
+                'mail' => $this->input->post('mail'),
             );
             if ($id <= 0) 
             {

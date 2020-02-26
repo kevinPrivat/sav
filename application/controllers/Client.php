@@ -14,8 +14,8 @@ class Client extends CI_Controller {
    //____________________________________________________________________________________________//
     public function views()
     {
-        $data['clients'] = $this->client_model->get_client();
-        $data['title'] = 'Liste Clients';
+        $data['client'] = $this->client_model->get_client();
+        $data['title'] = 'Liste ';
         $this->load->view('template/header', $data);
         $this->load->view('client/clientView', $data);
         $this->load->view('template/footer');
@@ -23,7 +23,7 @@ class Client extends CI_Controller {
 
     public function client($id)
     {
-        $data['clients'] = $this->client_model->get_client($id);
+        $data['client'] = $this->client_model->get_client($id);
         $data['title'] = $data['client']['nomClient'];
         $this->load->view('template/header', $data);
         $this->load->view('client/oneclient', $data);
@@ -49,7 +49,30 @@ class Client extends CI_Controller {
             $this->load->view('template/footer');
         }else {
             $this->client_model->setClient();
-            $this->load->view('template/success');
+            $this->load->view('client/success');
         }
     }   
+
+    public function update($id) 
+
+    {
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data ['title'] = 'Créer un nouveau client';
+
+        $this->form_validation->set_rules('title', 'Title', 'required');
+        $this->form_validation->set_rules('text', 'Text', 'required');
+        if ($this->form_validation->run() === FALSE) 
+    {
+
+        $this->load->view('template/header', $data);
+        $this->load->view('client/update', $data);
+        $this->load->view('template/footer');
+    } else {
+        $this->news_model->udpdate($id);
+        $this->load->view('client/success');
+    }
+}
+
 }
