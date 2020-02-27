@@ -15,7 +15,7 @@ class Client extends CI_Controller {
     public function views()
     {
         $data['clients'] = $this->client_model->get_client();
-        $data['title'] = 'Liste ';
+        $data['title'] = 'Liste Clients';
         $this->load->view('template/header', $data);
         $this->load->view('client/clientView', $data);
         $this->load->view('template/footer');
