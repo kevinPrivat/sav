@@ -14,16 +14,17 @@ class Client extends CI_Controller {
    //____________________________________________________________________________________________//
     public function views()
     {
-        $data['client'] = $this->client_model->get_client();
+        $data['clients'] = $this->client_model->get_client();
         $data['title'] = 'Liste ';
         $this->load->view('template/header', $data);
         $this->load->view('client/clientView', $data);
         $this->load->view('template/footer');
     }
 
-    public function client($id)
+    public function client($id = 1)
     {
         $data['client'] = $this->client_model->get_client($id);
+        var_dump($data['client']);
         $data['title'] = $data['client']['nomClient'];
         $this->load->view('template/header', $data);
         $this->load->view('client/oneclient', $data);
@@ -35,7 +36,7 @@ class Client extends CI_Controller {
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('nomClient', 'NomClient', 'required');
-        $this->form_validation->set_rules('numClient', 'NumClient', 'required');
+        $this->form_validation->set_rules('numTel', 'NumTel', 'required');
         $this->form_validation->set_rules('adresse', 'Adresse', 'required');
         $this->form_validation->set_rules('numTel', 'NumTel', 'required');
         $this->form_validation->set_rules('mail', 'Mail', 'required');
@@ -60,9 +61,14 @@ class Client extends CI_Controller {
         $this->load->library('form_validation');
 
         $data ['title'] = 'Créer un nouveau client';
+        $data ['client'] = $this->client_model->get_client($id);
 
-        $this->form_validation->set_rules('title', 'Title', 'required');
-        $this->form_validation->set_rules('text', 'Text', 'required');
+        $this->form_validation->set_rules('nomClient', 'Nom Client', 'required');
+        $this->form_validation->set_rules('numClient', 'Num Client', 'required');
+        $this->form_validation->set_rules('mail', 'Email Client', 'required');
+        $this->form_validation->set_rules('adresse', 'Adresse Client', 'required');
+        $this->form_validation->set_rules('numTel', 'Tel Client', 'required');
+        
         if ($this->form_validation->run() === FALSE) 
     {
 
@@ -70,7 +76,7 @@ class Client extends CI_Controller {
         $this->load->view('client/update', $data);
         $this->load->view('template/footer');
     } else {
-        $this->news_model->udpdate($id);
+        $this->news_model->update($id);
         $this->load->view('client/success');
     }
 }

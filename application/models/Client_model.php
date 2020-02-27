@@ -11,7 +11,7 @@ class Client_model extends CI_Model
      //----------------------------------------------------------------------------------//
     //----------------Récupère les infos dans la bdd en fonction de l'id----------------//
    //__________________________________________________________________________________//
-        public function get_client(int $id = 0)
+        public function get_client( $id = 0)
         {
             if ($id <= 0){
                 $query = $this->db->get('client');

@@ -4,10 +4,10 @@
 <?php foreach ($clients as $client): ?>
 <tr>
     <td> <?php echo $client['nomClient']; ?> </td>
-    <td> <?php echo $client['numClient']; ?> </td>
+    <td> <?php echo $client['numTel']; ?> </td>
     <td> <?php echo $client['adresse']; ?> </td>
     <td> <?php echo $client['numTel']; ?> </td>
     <td> <?php echo $client['mail']; ?> </td>
-    <?php endforeach ?>
+<?php endforeach; ?>
 </tr>
 </table>
