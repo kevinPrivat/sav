@@ -57,4 +57,10 @@ class Client_model extends CI_Model
             $query = $this->db->update('client', $data);
 
     }
+
+    public function deleteClient($id) 
+    {
+        $success = $this->db->delete('client', array('idClient' => $id));
+        return $success ;
+    }
 }

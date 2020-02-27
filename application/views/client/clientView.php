@@ -8,6 +8,8 @@
     <td> <?php echo $client['adresse']; ?> </td>
     <td> <?php echo $client['numTel']; ?> </td>
     <td> <?php echo $client['mail']; ?> </td>
+
+    <td><a href="<?php echo site_url("/client/delete/" .$client["idClient"]) ?>">Delete </a></td>
 <?php endforeach; ?>
 </tr>
 </table>

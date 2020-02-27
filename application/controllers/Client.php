@@ -24,7 +24,7 @@ class Client extends CI_Controller {
     public function client($id = 1)
     {
         $data['client'] = $this->client_model->get_client($id);
-        var_dump($data['client']);
+        //var_dump($data['client']);
         $data['title'] = $data['client']['nomClient'];
         $this->load->view('template/header', $data);
         $this->load->view('client/oneclient', $data);
@@ -79,6 +79,11 @@ class Client extends CI_Controller {
         $this->news_model->update($id);
         $this->load->view('client/success');
     }
-}
 
+    }
+    public function delete($id) 
+    {
+        $this->client_model->deleteClient($id);
+        $this->load->view('client/success');
+    }
 }
